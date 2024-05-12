@@ -13,8 +13,10 @@ using namespace genv;
 
 
 
-Window::Window(int x, int y):WidgetCsoport(0,0,x,y,Szin(192,192,192),Szin(255,255,255)){}
-Window::Window():WidgetCsoport(0,0,0,0){}
+Window::Window(int x, int y):WidgetCsoport(0,0,x,y,Szin(192,192,192),Szin(255,255,255)){
+    _eventvege=false;
+}
+Window::Window():Window(0,0){}
 
 
 void Window::EventLoop(){
@@ -22,10 +24,13 @@ void Window::EventLoop(){
     gout << refresh;
 
     event ev;
-    while(gin>>ev&&ev.keycode!=key_escape){
+    while(gin>>ev&&ev.keycode!=key_escape&&!_eventvege){
             if(ev.type==ev_mouse||ev.type==ev_key){
                     Handle(ev);
             }
             Rajzol();
         gout << refresh;
     }}
+void Window::Eventvege(){
+    _eventvege=true;
+}

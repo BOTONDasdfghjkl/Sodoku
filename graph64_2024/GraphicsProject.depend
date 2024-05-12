@@ -1981,7 +1981,7 @@
 	"widgetcsoport.hpp"
 	"window.hpp"
 
-1715516436 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\window.hpp
+1715516898 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\window.hpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"
@@ -1994,7 +1994,7 @@
 1715516568 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\main.cpp
 	"JatekMester.hpp"
 
-1715516625 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
+1715516954 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"

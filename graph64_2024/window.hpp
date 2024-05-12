@@ -11,11 +11,13 @@
 #include "widgetcsoport.hpp"
 
 class Window:public WidgetCsoport{
-
+private:
+    bool _eventvege;
 public:
     Window(int x, int y);
     Window();
     void EventLoop();
+    void Eventvege();
 
 };
 
