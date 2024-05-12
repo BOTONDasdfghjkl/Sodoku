@@ -6,6 +6,6 @@ int main()
 {
 
     JatekMester w;
-    w.EventLoop();
+    w.Start();
     return 0;
 }

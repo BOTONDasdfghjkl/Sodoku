@@ -11,9 +11,16 @@
 
 using namespace genv;
 
-const int XXkepernyomeret=600;
-const int YYkepernyomeret=400;
+const int XXkepernyomeret=500;
+const int YYkepernyomeret=700;
 
-JatekMester::JatekMester():Window(XXkepernyomeret,YYkepernyomeret){
+JatekMester::JatekMester(){
     gout.open(XXkepernyomeret,YYkepernyomeret);
+    _MenuSzerkezet=new Window(XXkepernyomeret,YYkepernyomeret);
+    _SodokuFelirat=new GombSzoveggel(_MenuSzerkezet,20,20,0,0,Szin(0,0,0),"Sodoku",130);
+    _StartGomb=new GombSzoveggel(_MenuSzerkezet, 200,300,100,50,"Start",40);
+}
+
+void JatekMester::Start(){
+    _MenuSzerkezet->EventLoop();
 }

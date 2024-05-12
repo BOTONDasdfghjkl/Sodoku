@@ -10,10 +10,11 @@
 #include "kivalasztoWidget.hpp"
 #include "widgetcsoport.hpp"
 
-class Window:WidgetCsoport{
+class Window:public WidgetCsoport{
 
 public:
     Window(int x, int y);
+    Window();
     void EventLoop();
 
 };
