@@ -12,7 +12,8 @@
 using namespace genv;
 
 
-Window::Window(int x, int y):WidgetCsoport(0,0,x,y,Szin(0,149,138),Szin(255,255,255)){
+
+Window::Window(int x, int y):WidgetCsoport(0,0,x,y,Szin(192,192,192),Szin(255,255,255)){
 
 }
 

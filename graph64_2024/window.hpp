@@ -11,17 +11,11 @@
 #include "widgetcsoport.hpp"
 
 class Window:WidgetCsoport{
-    GombSzoveggel* gombinennoda;
-    GombSzoveggel* gombonnanide;
-    KivalasztoWidget* itt;
-    KivalasztoWidget* ott;
 
 public:
     Window(int x, int y);
-    void Nyomtat();
     void EventLoop();
-    void Innenoda();
-    void Onnanide();
+
 };
 
 

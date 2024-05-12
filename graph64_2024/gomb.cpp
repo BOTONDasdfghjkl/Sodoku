@@ -6,11 +6,15 @@
 #include <functional>
 using namespace genv;
 
-Gomb::Gomb(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(x,y,xmeret,ymeret,hatterszin,widgetszin){};
+Gomb::Gomb(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(x,y,xmeret,ymeret,hatterszin,widgetszin){
+    _gombnyomas=[](){};
+};
 Gomb::Gomb(int x, int y, int xmeret, int ymeret, Szin widgetszin):Gomb(x,y,xmeret,ymeret,Szin(255,255,255),widgetszin){};
 Gomb::Gomb(int x, int y, int xmeret, int ymeret):Gomb(x,y,xmeret,ymeret,Szin(0,0,0)){};
 
-Gomb::Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(ablak,x,y,xmeret,ymeret,hatterszin,widgetszin){};
+Gomb::Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(ablak,x,y,xmeret,ymeret,hatterszin,widgetszin){
+        _gombnyomas=[](){};
+};
 Gomb::Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin):Gomb(ablak,x,y,xmeret,ymeret,Szin(255,255,255),widgetszin){};
 Gomb::Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret):Gomb(ablak,x,y,xmeret,ymeret,Szin(0,0,0)){};
 
