@@ -14,6 +14,7 @@ struct LenyomhatoWidget:public OsWidget{
         LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin);
         LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin widgetszin);
         LenyomhatoWidget(int x, int y, int xmeret, int ymeret);
+        LenyomhatoWidget();
 
         LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin);
         LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin);

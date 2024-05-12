@@ -11,6 +11,7 @@ LenyomhatoWidget::LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin ha
 };
 LenyomhatoWidget::LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin widgetszin):LenyomhatoWidget(x,y,xmeret,ymeret,Szin(255,255,255),widgetszin){};
 LenyomhatoWidget::LenyomhatoWidget(int x, int y, int xmeret, int ymeret):LenyomhatoWidget(x,y,xmeret,ymeret,Szin(0,0,0)){};
+ LenyomhatoWidget::LenyomhatoWidget():LenyomhatoWidget(0,0,0,0){}
 
 LenyomhatoWidget::LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(ablak,x,y,xmeret,ymeret,hatterszin,widgetszin){
         _gombnyomas=[](){};

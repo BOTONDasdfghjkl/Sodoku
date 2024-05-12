@@ -14,10 +14,10 @@ private:
     bool _menjenajatek;
 
     //Játék elemek
-    LenyomhatoWidget* _HatterElemek;
+    LenyomhatoWidget** _HatterElemek;
 
     SzovegesLenyomhatoWidget* _MenuGomb;
-    SzovegesLenyomhatoWidget* _SodokuPalya;
+    SzovegesLenyomhatoWidget** _SodokuPalya;
     SzovegesLenyomhatoWidget** _ErtekKivalasztok;
     SzovegesLenyomhatoWidget* _HibakszamaFelirat;
     int _elkovetetthibak;
