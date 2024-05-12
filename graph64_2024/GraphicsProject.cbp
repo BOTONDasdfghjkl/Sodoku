@@ -51,6 +51,8 @@
 			<Add library="dxguid" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="JatekMester.cpp" />
+		<Unit filename="JatekMester.hpp" />
 		<Unit filename="egyebstructok.cpp" />
 		<Unit filename="egyebstructok.hpp" />
 		<Unit filename="gomb.cpp" />
