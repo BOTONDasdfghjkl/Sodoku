@@ -7,8 +7,7 @@ using namespace genv;
 const int XX=600;
 const int YY=400;
 
-
-//dfhfgd
+//fdhgs
 int main()
 {
 
