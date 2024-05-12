@@ -38,8 +38,8 @@ void SzamosWidget::_SetErtekek(int maximum, int minimum){
 
 void SzamosWidget::_SetGombok(){
     int gombmeret=_ymeret/2;
-    _plusz=GombSzoveggel(_x+_xmeret-gombmeret,_y,gombmeret,gombmeret,"+",gombmeret-1);
-    _minusz=GombSzoveggel(_x+_xmeret-gombmeret,_y+gombmeret,gombmeret,gombmeret,"-",gombmeret-1);
+    _plusz=SzovegesLenyomhatoWidget(_x+_xmeret-gombmeret,_y,gombmeret,gombmeret,"+",gombmeret-1);
+    _minusz=SzovegesLenyomhatoWidget(_x+_xmeret-gombmeret,_y+gombmeret,gombmeret,gombmeret,"-",gombmeret-1);
 }
 
 void SzamosWidget::_Noveles(int mennyivel){

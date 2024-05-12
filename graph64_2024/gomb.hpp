@@ -7,17 +7,17 @@
 #include <functional>
 
 
-struct Gomb:public OsWidget{
+struct LenyomhatoWidget:public OsWidget{
     private:
         std::function<void()> _gombnyomas;
     public:
-        Gomb(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin);
-        Gomb(int x, int y, int xmeret, int ymeret, Szin widgetszin);
-        Gomb(int x, int y, int xmeret, int ymeret);
+        LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin);
+        LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin widgetszin);
+        LenyomhatoWidget(int x, int y, int xmeret, int ymeret);
 
-        Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin);
-        Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin);
-        Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret);
+        LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin);
+        LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin);
+        LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret);
         virtual void Rajzol() const;
         virtual bool Handle(genv::event ev);
         void SetGombNyomas(std::function<void()> gombnyomas);

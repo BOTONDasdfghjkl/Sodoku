@@ -6,15 +6,18 @@
 struct JatekMester{
 private:
     Window* _MenuSzerkezet;
+    Window* _SodokuJatek;
     //Menu elemek
-    GombSzoveggel* _SodokuFelirat;
-    GombSzoveggel* _StartGomb;
+    SzovegesLenyomhatoWidget* _SodokuFelirat;
+    SzovegesLenyomhatoWidget* _StartGomb;
 
     //Játék elemek
-    GombSzoveggel* _MenuGomb;
-    GombSzoveggel* _SodokuPalya;
-    GombSzoveggel* _ErtekKivalasztok;
-    GombSzoveggel* _HibakszamaFelirat;
+    WidgetCsoport* _HatterPalyanak;
+
+    SzovegesLenyomhatoWidget* _MenuGomb;
+    SzovegesLenyomhatoWidget* _SodokuPalya;
+    SzovegesLenyomhatoWidget* _ErtekKivalasztok;
+    SzovegesLenyomhatoWidget* _HibakszamaFelirat;
 
     public:
     JatekMester();

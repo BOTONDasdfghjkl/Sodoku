@@ -1491,7 +1491,7 @@
 	<string>
 	<vector>
 
-1715514265 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gomb.cpp
+1715517359 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gomb.cpp
 	"egyebstructok.hpp"
 	"oswidget.hpp"
 	"gomb.hpp"
@@ -1503,7 +1503,7 @@
 	"egyebstructok.hpp"
 	"graphics.hpp"
 
-1715001613 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gomb.hpp
+1715517359 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gomb.hpp
 	"egyebstructok.hpp"
 	"oswidget.hpp"
 	"graphics.hpp"
@@ -1519,13 +1519,13 @@
 	"kivalasztoWidget.hpp"
 	<vector>
 
-1714999315 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gombszoveggel.hpp
+1715517391 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gombszoveggel.hpp
 	"egyebstructok.hpp"
 	"oswidget.hpp"
 	"gomb.hpp"
 	"graphics.hpp"
 
-1714583531 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\szamoswidget.hpp
+1715517391 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\szamoswidget.hpp
 	"egyebstructok.hpp"
 	"oswidget.hpp"
 	"gombszoveggel.hpp"
@@ -1970,7 +1970,7 @@
 	"widgetcsoport.hpp"
 	<vector>
 
-1715514962 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\window.cpp
+1715516966 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\window.cpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"
@@ -2006,6 +2006,6 @@
 	"window.hpp"
 	"JatekMester.hpp"
 
-1715516613 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.hpp
+1715517391 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.hpp
 	"window.hpp"
 

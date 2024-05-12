@@ -6,22 +6,22 @@
 #include <functional>
 using namespace genv;
 
-Gomb::Gomb(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(x,y,xmeret,ymeret,hatterszin,widgetszin){
+LenyomhatoWidget::LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(x,y,xmeret,ymeret,hatterszin,widgetszin){
     _gombnyomas=[](){};
 };
-Gomb::Gomb(int x, int y, int xmeret, int ymeret, Szin widgetszin):Gomb(x,y,xmeret,ymeret,Szin(255,255,255),widgetszin){};
-Gomb::Gomb(int x, int y, int xmeret, int ymeret):Gomb(x,y,xmeret,ymeret,Szin(0,0,0)){};
+LenyomhatoWidget::LenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin widgetszin):LenyomhatoWidget(x,y,xmeret,ymeret,Szin(255,255,255),widgetszin){};
+LenyomhatoWidget::LenyomhatoWidget(int x, int y, int xmeret, int ymeret):LenyomhatoWidget(x,y,xmeret,ymeret,Szin(0,0,0)){};
 
-Gomb::Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(ablak,x,y,xmeret,ymeret,hatterszin,widgetszin){
+LenyomhatoWidget::LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin):OsWidget(ablak,x,y,xmeret,ymeret,hatterszin,widgetszin){
         _gombnyomas=[](){};
 };
-Gomb::Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin):Gomb(ablak,x,y,xmeret,ymeret,Szin(255,255,255),widgetszin){};
-Gomb::Gomb(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret):Gomb(ablak,x,y,xmeret,ymeret,Szin(0,0,0)){};
+LenyomhatoWidget::LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin):LenyomhatoWidget(ablak,x,y,xmeret,ymeret,Szin(255,255,255),widgetszin){};
+LenyomhatoWidget::LenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret):LenyomhatoWidget(ablak,x,y,xmeret,ymeret,Szin(0,0,0)){};
 
-void Gomb::Rajzol() const{
+void LenyomhatoWidget::Rajzol() const{
     HatterRajzol();
 }
-bool Gomb::Handle(genv::event ev){
+bool LenyomhatoWidget::Handle(genv::event ev){
     if(ev.type==ev_mouse){
         if(ev.button==btn_left && Hover(ev)){
                 _gombnyomas();
@@ -32,6 +32,6 @@ bool Gomb::Handle(genv::event ev){
 };
 
 
-void Gomb::SetGombNyomas(std::function<void()> gombnyomas){
+void LenyomhatoWidget::SetGombNyomas(std::function<void()> gombnyomas){
     _gombnyomas=gombnyomas;
 }

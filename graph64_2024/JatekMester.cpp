@@ -16,10 +16,16 @@ const int YYkepernyomeret=700;
 
 JatekMester::JatekMester(){
     gout.open(XXkepernyomeret,YYkepernyomeret);
+
+    //Menu elkészítése
     _MenuSzerkezet=new Window(XXkepernyomeret,YYkepernyomeret);
-    _SodokuFelirat=new GombSzoveggel(_MenuSzerkezet,20,20,0,0,Szin(0,0,0),"Sodoku",130);
-    _StartGomb=new GombSzoveggel(_MenuSzerkezet, 200,300,100,50,"Start",40);
+    _SodokuFelirat=new SzovegesLenyomhatoWidget(_MenuSzerkezet,20,20,0,0,Szin(0,0,0),"Sodoku",130);
+    _StartGomb=new SzovegesLenyomhatoWidget(_MenuSzerkezet, 200,300,100,50,"Start",40);
     _StartGomb->SetGombNyomas([&](){_MenuSzerkezet->Eventvege();});
+
+    //Jatek elkeszitese
+
+
 }
 
 void JatekMester::Start(){

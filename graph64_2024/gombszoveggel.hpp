@@ -7,18 +7,18 @@
 #include "gomb.hpp"
 #include "graphics.hpp"
 
-struct GombSzoveggel:public Gomb{
+struct SzovegesLenyomhatoWidget:public LenyomhatoWidget{
     protected:
         int _szovegmeret;
         std::string _szoveg;
     public:
-        GombSzoveggel(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin,std::string szoveg,int szovegmeret);
-        GombSzoveggel(int x, int y, int xmeret, int ymeret, Szin widgetszin,std::string szoveg,int szovegmeret);
-        GombSzoveggel(int x, int y, int xmeret, int ymeret,std::string szoveg,int szovegmeret);
-        GombSzoveggel(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin,std::string szoveg,int szovegmeret);
-        GombSzoveggel(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin,std::string szoveg,int szovegmeret);
-        GombSzoveggel(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret,std::string szoveg,int szovegmeret);
-        GombSzoveggel();
+        SzovegesLenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin,std::string szoveg,int szovegmeret);
+        SzovegesLenyomhatoWidget(int x, int y, int xmeret, int ymeret, Szin widgetszin,std::string szoveg,int szovegmeret);
+        SzovegesLenyomhatoWidget(int x, int y, int xmeret, int ymeret,std::string szoveg,int szovegmeret);
+        SzovegesLenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin hatterszin, Szin widgetszin,std::string szoveg,int szovegmeret);
+        SzovegesLenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret, Szin widgetszin,std::string szoveg,int szovegmeret);
+        SzovegesLenyomhatoWidget(WidgetCsoport* ablak,int x, int y, int xmeret, int ymeret,std::string szoveg,int szovegmeret);
+        SzovegesLenyomhatoWidget();
         virtual void Rajzol() const;
         void ErtekValt(std::string szoveg);
         std::string Ertekvisszaad() const;

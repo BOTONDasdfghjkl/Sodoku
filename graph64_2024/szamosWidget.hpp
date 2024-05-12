@@ -14,8 +14,8 @@ struct SzamosWidget:public OsWidget{
         int _ertek;
         int _maxertek;
         int _minertek;
-        GombSzoveggel _plusz;
-        GombSzoveggel _minusz;
+        SzovegesLenyomhatoWidget _plusz;
+        SzovegesLenyomhatoWidget _minusz;
         void _SetErtekek(int maximum, int minimum);
         void _SetGombok();
         void _Noveles(int mennyivel);
