@@ -18,8 +18,12 @@ private:
 
     SzovegesLenyomhatoWidget* _MenuGomb;
     SzovegesLenyomhatoWidget* _SodokuPalya;
-    SzovegesLenyomhatoWidget* _ErtekKivalasztok;
+    SzovegesLenyomhatoWidget** _ErtekKivalasztok;
     SzovegesLenyomhatoWidget* _HibakszamaFelirat;
+    int _elkovetetthibak;
+    std::string _HibakSzamaszovege();
+    int _gombnyomaserteke;
+    void _GombErtekValtGombnyomashoz(SzovegesLenyomhatoWidget* lenyomottgomb);
 
     public:
     JatekMester();
