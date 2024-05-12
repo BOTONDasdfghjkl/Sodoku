@@ -10,9 +10,11 @@ private:
     //Menu elemek
     SzovegesLenyomhatoWidget* _SodokuFelirat;
     SzovegesLenyomhatoWidget* _StartGomb;
+    SzovegesLenyomhatoWidget* _Kilepes;
+    bool _menjenajatek;
 
     //Játék elemek
-    WidgetCsoport* _HatterPalyanak;
+    LenyomhatoWidget* _HatterElemek;
 
     SzovegesLenyomhatoWidget* _MenuGomb;
     SzovegesLenyomhatoWidget* _SodokuPalya;

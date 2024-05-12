@@ -20,6 +20,7 @@ Window::Window():Window(0,0){}
 
 
 void Window::EventLoop(){
+    _eventvege=false;
     Rajzol();
     gout << refresh;
 

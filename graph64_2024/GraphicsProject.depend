@@ -1537,7 +1537,7 @@
 	"graphics.hpp"
 	<vector>
 
-1714999318 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gombszoveggel.cpp
+1715517387 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\gombszoveggel.cpp
 	"egyebstructok.hpp"
 	"oswidget.hpp"
 	"gomb.hpp"
@@ -1951,7 +1951,7 @@
 	"oswidget.hpp"
 	"widgetcsoport.hpp"
 
-1714834030 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\szamoswidget.cpp
+1715517391 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\szamoswidget.cpp
 	"egyebstructok.hpp"
 	"oswidget.hpp"
 	"gomb.hpp"
@@ -1970,7 +1970,7 @@
 	"widgetcsoport.hpp"
 	<vector>
 
-1715516966 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\window.cpp
+1715518031 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\window.cpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"
@@ -1994,7 +1994,7 @@
 1715516568 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\main.cpp
 	"JatekMester.hpp"
 
-1715516954 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
+1715518005 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"
@@ -2006,6 +2006,6 @@
 	"window.hpp"
 	"JatekMester.hpp"
 
-1715517391 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.hpp
+1715517562 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.hpp
 	"window.hpp"
 
