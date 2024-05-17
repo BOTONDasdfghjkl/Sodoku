@@ -20,6 +20,10 @@ const int MAXHIBAK=10;
 const int SZAMOSGOMBOKMERETE=20;
 const int KICSINEGYZET=SODOKUMERET*SODOKUMERET;
 const int NAGYNEGYZET=KICSINEGYZET*KICSINEGYZET;
+const Szin kekszin(51,51,255);
+const Szin fekete(0,0,0);
+const Szin szurke(64,64,64);
+const Szin feher(255,255,255);
 
 
 
@@ -30,7 +34,7 @@ JatekMester::JatekMester(){
     //Menu elkészítése
     _menjenajatek=true;
     _MenuSzerkezet=new Window(XXkepernyomeret,YYkepernyomeret);
-    _SodokuFelirat=new SzovegesLenyomhatoWidget(_MenuSzerkezet,20,20,0,0,Szin(0,0,0),"Sodoku",130);
+    _SodokuFelirat=new SzovegesLenyomhatoWidget(_MenuSzerkezet,20,20,0,0,fekete,"Sodoku",130);
     _StartGomb=new SzovegesLenyomhatoWidget(_MenuSzerkezet, 200,300,100,50,"Start",40);
     _StartGomb->SetGombNyomas([&](){_MenuSzerkezet->Eventvege();_menjenajatek=true;});
     _Kilepes=new SzovegesLenyomhatoWidget(_MenuSzerkezet, 200,400,100,50,"Quit",40);
@@ -40,15 +44,15 @@ JatekMester::JatekMester(){
 
 
     _elkovetetthibak=0;
-    _gombnyomaserteke=1;
+
     _SodokuJatek=new Window(XXkepernyomeret,YYkepernyomeret);
     _HatterElemek=new LenyomhatoWidget*[4];
     const int vonalmeret=3*SODOKUMERET*(SZAMOSGOMBOKMERETE+10)-10;
-    const Szin kekszin(51,51,255);
-    _HatterElemek[1]=new LenyomhatoWidget(_SodokuJatek,100+3*(SZAMOSGOMBOKMERETE+10)-10,200,10,vonalmeret,kekszin,Szin(0,0,0));
-    _HatterElemek[2]=new LenyomhatoWidget(_SodokuJatek,100+6*(SZAMOSGOMBOKMERETE+10)-10,200,10,vonalmeret,kekszin,Szin(0,0,0));
-    _HatterElemek[3]=new LenyomhatoWidget(_SodokuJatek,100,200+3*(SZAMOSGOMBOKMERETE+10)-10,vonalmeret,10,kekszin,Szin(0,0,0));
-    _HatterElemek[4]=new LenyomhatoWidget(_SodokuJatek,100,200+6*(SZAMOSGOMBOKMERETE+10)-10,vonalmeret,10,kekszin,Szin(0,0,0));
+
+    _HatterElemek[1]=new LenyomhatoWidget(_SodokuJatek,100+3*(SZAMOSGOMBOKMERETE+10)-10,200,10,vonalmeret,kekszin,fekete);
+    _HatterElemek[2]=new LenyomhatoWidget(_SodokuJatek,100+6*(SZAMOSGOMBOKMERETE+10)-10,200,10,vonalmeret,kekszin,fekete);
+    _HatterElemek[3]=new LenyomhatoWidget(_SodokuJatek,100,200+3*(SZAMOSGOMBOKMERETE+10)-10,vonalmeret,10,kekszin,fekete);
+    _HatterElemek[4]=new LenyomhatoWidget(_SodokuJatek,100,200+6*(SZAMOSGOMBOKMERETE+10)-10,vonalmeret,10,kekszin,fekete);
 
     _MenuGomb=new SzovegesLenyomhatoWidget(_SodokuJatek,10,10,140,20,"To the main menu",16);
     _MenuGomb->SetGombNyomas([&](){_SodokuJatek->Eventvege();});
@@ -57,7 +61,7 @@ JatekMester::JatekMester(){
     _ErtekKivalasztok=new SzovegesLenyomhatoWidget*[KICSINEGYZET];
     for (int i=0;i<KICSINEGYZET;i++){
         _ErtekKivalasztok[i]=new SzovegesLenyomhatoWidget(_SodokuJatek,100+i*(SZAMOSGOMBOKMERETE+10),600,SZAMOSGOMBOKMERETE,SZAMOSGOMBOKMERETE,std::to_string(i+1),SZAMOSGOMBOKMERETE);
-        _ErtekKivalasztok[i]->SetGombNyomas([i,this](){_gombnyomaserteke=(i+1);});
+        _ErtekKivalasztok[i]->SetGombNyomas([i,this](){_ChangeErtek(i+1);});
     }
     _SodokuPalya=new SzovegesLenyomhatoWidget*[NAGYNEGYZET];
     int ind=0;
@@ -66,12 +70,14 @@ JatekMester::JatekMester(){
             for(int y=0;y<SODOKUMERET;y++){
                 for(int x=0;x<SODOKUMERET;x++){
                         _SodokuPalya[ind]=new SzovegesLenyomhatoWidget(_SodokuJatek,100+(x+SODOKUMERET*X)*(SZAMOSGOMBOKMERETE+10),200+(y+SODOKUMERET*Y)*(SZAMOSGOMBOKMERETE+10),SZAMOSGOMBOKMERETE,SZAMOSGOMBOKMERETE,"",SZAMOSGOMBOKMERETE);
-                        _SodokuPalya[ind]->SetGombNyomas([Y,X,y,x,ind,this](){std::cout<<std::to_string(ind);});
+                        _SodokuPalya[ind]->SetGombNyomas([Y,X,y,x,ind,this](){_Step(Y,X,y,x,ind);});
                         ind++;
                 }
             }
         }
     }
+    _gombnyomaserteke=1;
+    _ChangeErtek(1);
 }
 
 void JatekMester::Start(){
@@ -177,10 +183,13 @@ void JatekMester::_GenerateMap(){
 
                         if(_felulirhatoe[Y][X][y][x]){
                             _SodokuPalya[ind]->ErtekValt("");
+                            _SodokuPalya[ind]->HatterSzinValt(feher);
+                            _SodokuPalya[ind]->EloSzinValt(kekszin);
                             _intmatrix[Y][X][y][x]=0;
                         }else{
-
                         _SodokuPalya[ind]->ErtekValt(std::to_string(_intmatrix[Y][X][y][x]));
+                        _SodokuPalya[ind]->HatterSzinValt(szurke);
+                        _SodokuPalya[ind]->EloSzinValt(feher);
                         }
                         ind++;
                 }
@@ -193,7 +202,7 @@ void JatekMester::_GenerateMap(){
 
 
 
-bool JatekMester::_isValidROWCOLOUM(int dY,int dX,int dy,int dx,int ertek){
+bool JatekMester::_isValidROWCOLOUM(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek){
 
     for(int i=0;i<SODOKUMERET;i++){
         for(int j=0;j<SODOKUMERET;j++){
@@ -207,9 +216,39 @@ bool JatekMester::_isValidROWCOLOUM(int dY,int dX,int dy,int dx,int ertek){
     return true;
 };
 
+bool JatekMester::_isValidKicsiNegyzet(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek){
+    for(int i=0;i<SODOKUMERET;i++){
+        for(int j=0;j<SODOKUMERET;j++){
+            if(_intmatrix[dY][dX][i][j]==ertek){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
+bool JatekMester::_isValidStep(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek){
 
+    return _isValidKicsiNegyzet(dY,dX,dy,dx,ertek) &&_isValidROWCOLOUM(dY,dX,dy,dx,ertek);
+}
 
+void JatekMester::_isLost(){};
+void JatekMester::_isWin(){};
+void JatekMester::_Step(int Y,int X,int y, int x,int ind){
+    if(_felulirhatoe[Y][X][y][x]){
+            if(_isValidStep(Y,X,y,x,_gombnyomaserteke)){
+                        std::cout<<"jo";
+            }else{
+                        std::cout<<"nem jo";
+            }
+    }
+
+};
+void JatekMester::_ChangeErtek(int i){
+    _ErtekKivalasztok[_gombnyomaserteke-1]->EloSzinValt(fekete);
+    _gombnyomaserteke=i;
+    _ErtekKivalasztok[_gombnyomaserteke-1]->EloSzinValt(kekszin);
+};
 
 
 

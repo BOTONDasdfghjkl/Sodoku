@@ -25,20 +25,30 @@ private:
     SzovegesLenyomhatoWidget* _HibakszamaFelirat;
     int _elkovetetthibak;
     std::string _HibakSzamaszovege();
+
+
+
+
     int _gombnyomaserteke;
-    void _GombErtekValtGombnyomashoz(SzovegesLenyomhatoWidget* lenyomottgomb);
-
-    bool _isValidROWCOLOUM(int dY,int dX,int dy,int dx,int ertek);
-    bool _fillBoard();
-
     int _intmatrix[SODOKUMERET][SODOKUMERET][SODOKUMERET][SODOKUMERET];
     bool _felulirhatoe[SODOKUMERET][SODOKUMERET][SODOKUMERET][SODOKUMERET];
+    void _GenerateMap();
+    bool _isValidROWCOLOUM(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek);
+    bool _isValidKicsiNegyzet(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek);
+    bool _isValidStep(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek);
+    void _isLost();
+    void _isWin();
+    void _Step(int Y,int X,int y, int x, int ind);
+    void _ChangeErtek(int i);
+
+    /*
     void _GenerateIntMatrix();
     void _GenerateIntMatrixKicsiNegyzet(int Y, int X);
     void _GenerationErrorSolver(const int& Y,const int& X,const int&y,const int &x);
     void ElemekTorlese(std::vector<int>& v,const int& Y,const int& X,const int&y,const int &x);
     void _GenerateBoolMatrix();
-    void _GenerateMap();
+    */
+
 
     public:
     JatekMester();
