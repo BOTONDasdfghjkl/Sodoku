@@ -130,6 +130,45 @@ void JatekMester::_GenerateIntMatrix(){
             }
         }
     }
+
+    std::vector<int> lehetsegesszamok,lehetsegesszamok2;
+    int szam;
+
+    for(int Y=0;Y<SODOKUMERET;Y++){
+        for(int X=0;X<SODOKUMERET;X++){
+                std::cout<<std::endl;
+                lehetsegesszamok={1,2,3,4,5,6,7,8,9};
+            for(int y=0;y<SODOKUMERET;y++){
+                for(int x=0;x<SODOKUMERET;x++){
+                        _Clonevector(lehetsegesszamok,lehetsegesszamok2);
+                            size_t i=0;
+                            while(i<lehetsegesszamok2.size()){
+                                if(!_isValidROWCOLOUM(Y,X,y,x,lehetsegesszamok2[i])){
+                                    lehetsegesszamok2.erase(lehetsegesszamok2.begin()+i);
+                                }else{
+                                    i++;
+                                }
+                            }
+
+                            //std::cout<<lehetsegesszamok2.size();
+                        if(lehetsegesszamok2.size()>0){
+                            do{
+                                    szam=lehetsegesszamok2[rand()%lehetsegesszamok2.size()];
+                            }while(!_isValidROWCOLOUM(Y,X,y,x,szam));
+                        }else{
+                                szam=0;
+                        }
+                        std::cout<<szam;
+                        _intmatrix[Y][X][y][x]=szam;
+                        int ind=_Searchinvector(lehetsegesszamok,szam);
+                        if(ind!=-1){
+                            lehetsegesszamok.erase(lehetsegesszamok.begin()+ind);
+                        }
+                }
+            }
+        }
+    }
+
 };
 void JatekMester::_GenerateBoolMatrix(){
     for(int Y=0;Y<SODOKUMERET;Y++){
@@ -142,7 +181,7 @@ void JatekMester::_GenerateBoolMatrix(){
         }
     }
     int mennyiures=45+rand()%10;
-    int randomszam,rand1,rand2,rand3,rand4;
+    int rand1,rand2,rand3,rand4;
     do{
             rand1=rand()%SODOKUMERET;
             rand2=rand()%SODOKUMERET;
@@ -164,12 +203,14 @@ void JatekMester::_GenerateMap(){
         for(int X=0;X<SODOKUMERET;X++){
             for(int y=0;y<SODOKUMERET;y++){
                 for(int x=0;x<SODOKUMERET;x++){
+                        /*
                         if(_felulirhatoe[Y][X][y][x]){
                             _SodokuPalya[ind]->ErtekValt("");
                             _intmatrix[Y][X][y][x]=0;
                         }else{
-                        _SodokuPalya[ind]->ErtekValt(std::to_string(_felulirhatoe[Y][X][y][x]));
-                        }
+                        */
+                        _SodokuPalya[ind]->ErtekValt(std::to_string(_intmatrix[Y][X][y][x]));
+                        //}
                         ind++;
                 }
             }
