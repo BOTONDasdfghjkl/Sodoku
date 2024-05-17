@@ -1994,7 +1994,7 @@
 1715516568 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\main.cpp
 	"JatekMester.hpp"
 
-1715958047 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
+1715958342 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"
@@ -2007,7 +2007,6 @@
 	"JatekMester.hpp"
 	"iostream"
 	<vector>
-	<cstdlib>
 	<ctime>
 
 1715957208 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.hpp

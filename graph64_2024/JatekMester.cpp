@@ -148,8 +148,6 @@ void JatekMester::_GenerateBoolMatrix(){
             rand2=rand()%SODOKUMERET;
             rand3=rand()%SODOKUMERET;
             rand4=rand()%SODOKUMERET;
-
-            std::cout<<rand1;
             if(_felulirhatoe[rand1][rand2][rand3][rand4]==false){
                 _felulirhatoe[rand1][rand2][rand3][rand4]=true;
                 mennyiures--;
@@ -167,6 +165,7 @@ void JatekMester::_GenerateMap(){
             for(int y=0;y<SODOKUMERET;y++){
                 for(int x=0;x<SODOKUMERET;x++){
                         if(_felulirhatoe[Y][X][y][x]){
+                            _SodokuPalya[ind]->ErtekValt("");
                             _intmatrix[Y][X][y][x]=0;
                         }else{
                         _SodokuPalya[ind]->ErtekValt(std::to_string(_felulirhatoe[Y][X][y][x]));
