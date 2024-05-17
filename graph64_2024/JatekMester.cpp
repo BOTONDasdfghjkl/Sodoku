@@ -21,6 +21,8 @@ const int SZAMOSGOMBOKMERETE=20;
 const int KICSINEGYZET=SODOKUMERET*SODOKUMERET;
 const int NAGYNEGYZET=KICSINEGYZET*KICSINEGYZET;
 
+
+
 JatekMester::JatekMester(){
     gout.open(XXkepernyomeret,YYkepernyomeret);
         std::srand(std::time(0));
@@ -87,7 +89,134 @@ std::string JatekMester::_HibakSzamaszovege(){
     return std::to_string(_elkovetetthibak)+"/"+std::to_string(MAXHIBAK);
 }
 
+void JatekMester::_GenerateMap(){
+    for(int Y=0;Y<SODOKUMERET;Y++){
+        for(int X=0;X<SODOKUMERET;X++){
+            for(int y=0;y<SODOKUMERET;y++){
+                for(int x=0;x<SODOKUMERET;x++){
+                        _intmatrix[Y][X][y][x]=0;
+                }
+            }
+        }
+    }
+    for(int Y=0;Y<SODOKUMERET;Y++){
+        for(int X=0;X<SODOKUMERET;X++){
+            for(int y=0;y<SODOKUMERET;y++){
+                for(int x=0;x<SODOKUMERET;x++){
+                        _felulirhatoe[Y][X][y][x]=true;
+                }
+            }
+        }
+    }
+    _felulirhatoe[0][0][0][0]=false;
+    _intmatrix[0][0][0][0]=7;
+    _felulirhatoe[0][0][2][1]=false;
+    _intmatrix[0][0][2][1]=5;
 
+    _felulirhatoe[0][1][1][0]=false;
+    _intmatrix[0][1][1][0]=6;
+    _felulirhatoe[0][1][2][1]=false;
+    _intmatrix[0][1][2][1]=9;
+    _felulirhatoe[0][1][2][2]=false;
+    _intmatrix[0][1][2][2]=1;
+
+    _felulirhatoe[0][2][0][1]=false;
+    _intmatrix[0][2][0][1]=3;
+    _felulirhatoe[0][2][0][2]=false;
+    _intmatrix[0][2][0][2]=5;
+    _felulirhatoe[0][2][1][0]=false;
+    _intmatrix[0][2][1][0]=1;
+    _felulirhatoe[0][2][1][1]=false;
+    _intmatrix[0][2][1][1]=8;
+
+    _felulirhatoe[1][0][0][0]=false;
+    _intmatrix[1][0][0][0]=3;
+    _felulirhatoe[1][0][1][1]=false;
+    _intmatrix[1][0][1][1]=8;
+    _felulirhatoe[1][0][1][2]=false;
+    _intmatrix[1][0][1][2]=9;
+
+    _felulirhatoe[1][1][0][2]=false;
+    _intmatrix[1][1][0][2]=5;
+    _felulirhatoe[1][1][2][0]=false;
+    _intmatrix[1][1][2][0]=2;
+
+    _felulirhatoe[1][2][1][0]=false;
+    _intmatrix[1][2][1][0]=5;
+    _felulirhatoe[1][2][1][1]=false;
+    _intmatrix[1][2][1][1]=6;
+    _felulirhatoe[1][2][2][2]=false;
+    _intmatrix[1][2][2][2]=8;
+
+    _felulirhatoe[2][0][1][1]=false;
+    _intmatrix[2][0][1][1]=9;
+    _felulirhatoe[2][0][1][2]=false;
+    _intmatrix[2][0][1][2]=7;
+    _felulirhatoe[2][0][2][0]=false;
+    _intmatrix[2][0][2][0]=5;
+    _felulirhatoe[2][0][2][1]=false;
+    _intmatrix[2][0][2][1]=2;
+
+    _felulirhatoe[2][1][0][0]=false;
+    _intmatrix[2][1][0][0]=1;
+    _felulirhatoe[2][1][0][1]=false;
+    _intmatrix[2][1][0][1]=4;
+    _felulirhatoe[2][1][1][2]=false;
+    _intmatrix[2][1][1][2]=3;
+
+    _felulirhatoe[2][2][0][1]=false;
+    _intmatrix[2][2][0][1]=5;
+    _felulirhatoe[2][2][2][2]=false;
+    _intmatrix[2][2][2][2]=6;
+
+    int ind=0;
+    for(int Y=0;Y<SODOKUMERET;Y++){
+        for(int X=0;X<SODOKUMERET;X++){
+            for(int y=0;y<SODOKUMERET;y++){
+                for(int x=0;x<SODOKUMERET;x++){
+
+                        if(_felulirhatoe[Y][X][y][x]){
+                            _SodokuPalya[ind]->ErtekValt("");
+                            _intmatrix[Y][X][y][x]=0;
+                        }else{
+
+                        _SodokuPalya[ind]->ErtekValt(std::to_string(_intmatrix[Y][X][y][x]));
+                        }
+                        ind++;
+                }
+            }
+        }
+    }
+
+
+}
+
+
+
+bool JatekMester::_isValidROWCOLOUM(int dY,int dX,int dy,int dx,int ertek){
+
+    for(int i=0;i<SODOKUMERET;i++){
+        for(int j=0;j<SODOKUMERET;j++){
+
+                    if(_intmatrix[dY][i][dy][j]==ertek||_intmatrix[i][dX][j][dx]==ertek){
+                        return false;
+                    }
+
+        }
+    }
+    return true;
+};
+
+
+
+
+
+
+
+
+
+
+/*
 //Ezt a kettot nem tesztem be a structba, mert mashol is hasznalhatok lennének, de nnem tudok most nekik jobb helyet szoval itt hagyom oket.
 void _Clonevector(std::vector<int>& innen, std::vector<int>& ide){
     ide.clear();
@@ -103,20 +232,6 @@ int _Searchinvector(const std::vector<int>& v, int mit){
     }
 
     return -1;
-};
-
-bool JatekMester::_isValidROWCOLOUM(int dY,int dX,int dy,int dx,int ertek){
-
-    for(int i=0;i<SODOKUMERET;i++){
-        for(int j=0;j<SODOKUMERET;j++){
-
-                    if(_intmatrix[dY][i][dy][j]==ertek||_intmatrix[i][dX][j][dx]==ertek){
-                        return false;
-                    }
-
-        }
-    }
-    return true;
 };
 
 void JatekMester::ElemekTorlese(std::vector<int>& v,const int& Y,const int& X,const int&y,const int &x){
@@ -201,14 +316,14 @@ void JatekMester::_GenerateMap(){
         for(int X=0;X<SODOKUMERET;X++){
             for(int y=0;y<SODOKUMERET;y++){
                 for(int x=0;x<SODOKUMERET;x++){
-                        /*
+
                         if(_felulirhatoe[Y][X][y][x]){
                             _SodokuPalya[ind]->ErtekValt("");
                             _intmatrix[Y][X][y][x]=0;
                         }else{
-                        */
+
                         _SodokuPalya[ind]->ErtekValt(std::to_string(_intmatrix[Y][X][y][x]));
-                        //}
+                        }
                         ind++;
                 }
             }
@@ -216,3 +331,4 @@ void JatekMester::_GenerateMap(){
     }
 
 };
+*/
