@@ -28,7 +28,6 @@ void WidgetCsoport::AddWidget(OsWidget* wid){
     widgetek.push_back(wid);
 }
 void WidgetCsoport::RemoveWidget(int ind){
-    delete widgetek[ind];
     widgetek.erase(widgetek.begin()+ind);
 }
 

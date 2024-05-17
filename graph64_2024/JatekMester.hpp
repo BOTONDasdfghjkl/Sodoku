@@ -34,6 +34,9 @@ private:
     int _intmatrix[SODOKUMERET][SODOKUMERET][SODOKUMERET][SODOKUMERET];
     bool _felulirhatoe[SODOKUMERET][SODOKUMERET][SODOKUMERET][SODOKUMERET];
     void _GenerateIntMatrix();
+    void _GenerateIntMatrixKicsiNegyzet(int Y, int X);
+    void _GenerationErrorSolver(const int& Y,const int& X,const int&y,const int &x)
+    void ElemekTorlese(std::vector<int>& v,const int& Y,const int& X,const int&y,const int &x);
     void _GenerateBoolMatrix();
     void _GenerateMap();
 

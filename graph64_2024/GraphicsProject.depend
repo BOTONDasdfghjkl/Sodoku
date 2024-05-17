@@ -1960,7 +1960,7 @@
 	"szamosWidget.hpp"
 	"climits"
 
-1715513586 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\widgetcsoport.cpp
+1715963220 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\widgetcsoport.cpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"
@@ -1994,7 +1994,7 @@
 1715516568 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\main.cpp
 	"JatekMester.hpp"
 
-1715962121 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
+1715965985 source:c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.cpp
 	"graphics.hpp"
 	"egyebstructok.hpp"
 	"oswidget.hpp"
@@ -2009,7 +2009,7 @@
 	<vector>
 	<ctime>
 
-1715957208 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.hpp
+1715965023 c:\users\otooz\onedrive\dokumentumok\prog2\sodoku\graph64_2024\jatekmester.hpp
 	"window.hpp"
 	<vector>
 

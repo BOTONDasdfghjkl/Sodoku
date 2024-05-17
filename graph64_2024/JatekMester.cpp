@@ -109,15 +109,43 @@ bool JatekMester::_isValidROWCOLOUM(int dY,int dX,int dy,int dx,int ertek){
 
     for(int i=0;i<SODOKUMERET;i++){
         for(int j=0;j<SODOKUMERET;j++){
-                if(!(i==dX&&i==dY)){
+
                     if(_intmatrix[dY][i][dy][j]==ertek||_intmatrix[i][dX][j][dx]==ertek){
                         return false;
                     }
-                }
+
         }
     }
     return true;
 };
+
+void JatekMester::ElemekTorlese(std::vector<int>& v,const int& Y,const int& X,const int&y,const int &x){
+    size_t i=0;
+        while(i<v.size()){
+                if(!_isValidROWCOLOUM(Y,X,y,x,v[i])){
+                    v.erase(v.begin()+i);
+                }else{
+                    i++;
+                }
+        }
+}
+
+void JatekMester::_GenerateIntMatrixKicsiNegyzet(int Y, int X){
+    std::vector<int> lehetsegesszamok;
+    int szam;
+    lehetsegesszamok={1,2,3,4,5,6,7,8,9};
+            for(int y=0;y<SODOKUMERET;y++){
+                for(int x=0;x<SODOKUMERET;x++){
+                        szam=lehetsegesszamok[rand()%lehetsegesszamok.size()];
+                        _intmatrix[Y][X][y][x]=szam;
+                        int ind=_Searchinvector(lehetsegesszamok,szam);
+                        if(ind!=-1){
+                            lehetsegesszamok.erase(lehetsegesszamok.begin()+ind);
+                        }
+                }
+            }
+}
+
 
 
 void JatekMester::_GenerateIntMatrix(){
@@ -131,41 +159,11 @@ void JatekMester::_GenerateIntMatrix(){
         }
     }
 
-    std::vector<int> lehetsegesszamok,lehetsegesszamok2;
-    int szam;
+
 
     for(int Y=0;Y<SODOKUMERET;Y++){
         for(int X=0;X<SODOKUMERET;X++){
-                std::cout<<std::endl;
-                lehetsegesszamok={1,2,3,4,5,6,7,8,9};
-            for(int y=0;y<SODOKUMERET;y++){
-                for(int x=0;x<SODOKUMERET;x++){
-                        _Clonevector(lehetsegesszamok,lehetsegesszamok2);
-                            size_t i=0;
-                            while(i<lehetsegesszamok2.size()){
-                                if(!_isValidROWCOLOUM(Y,X,y,x,lehetsegesszamok2[i])){
-                                    lehetsegesszamok2.erase(lehetsegesszamok2.begin()+i);
-                                }else{
-                                    i++;
-                                }
-                            }
-
-                            //std::cout<<lehetsegesszamok2.size();
-                        if(lehetsegesszamok2.size()>0){
-                            do{
-                                    szam=lehetsegesszamok2[rand()%lehetsegesszamok2.size()];
-                            }while(!_isValidROWCOLOUM(Y,X,y,x,szam));
-                        }else{
-                                szam=0;
-                        }
-                        std::cout<<szam;
-                        _intmatrix[Y][X][y][x]=szam;
-                        int ind=_Searchinvector(lehetsegesszamok,szam);
-                        if(ind!=-1){
-                            lehetsegesszamok.erase(lehetsegesszamok.begin()+ind);
-                        }
-                }
-            }
+            _GenerateIntMatrixKicsiNegyzet(Y,X);
         }
     }
 
