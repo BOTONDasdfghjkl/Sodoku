@@ -96,6 +96,8 @@ std::string JatekMester::_HibakSzamaszovege(){
 }
 
 void JatekMester::_GenerateMap(){
+    _elkovetetthibak=0;
+    _HibakszamaFelirat->ErtekValt(_HibakSzamaszovege());
     for(int Y=0;Y<SODOKUMERET;Y++){
         for(int X=0;X<SODOKUMERET;X++){
             for(int y=0;y<SODOKUMERET;y++){
@@ -237,9 +239,11 @@ void JatekMester::_isWin(){};
 void JatekMester::_Step(int Y,int X,int y, int x,int ind){
     if(_felulirhatoe[Y][X][y][x]){
             if(_isValidStep(Y,X,y,x,_gombnyomaserteke)){
-                        std::cout<<"jo";
+                    _intmatrix[Y][X][y][x]=_gombnyomaserteke;
+                    _SodokuPalya[ind]->ErtekValt(std::to_string(_gombnyomaserteke));
             }else{
-                        std::cout<<"nem jo";
+                        _elkovetetthibak++;
+                        _HibakszamaFelirat->ErtekValt(_HibakSzamaszovege());
             }
     }
 
