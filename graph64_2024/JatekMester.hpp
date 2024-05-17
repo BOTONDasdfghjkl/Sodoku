@@ -2,6 +2,9 @@
 #define JATEKMESTER_HPP_INCLUDED
 
 #include "window.hpp"
+#include <vector>
+
+const int SODOKUMERET=3;
 
 struct JatekMester{
 private:
@@ -24,6 +27,15 @@ private:
     std::string _HibakSzamaszovege();
     int _gombnyomaserteke;
     void _GombErtekValtGombnyomashoz(SzovegesLenyomhatoWidget* lenyomottgomb);
+
+    bool _isValidROWCOLOUM(int dY,int dX,int dy,int dx,int ertek);
+    bool _fillBoard();
+
+    int _intmatrix[SODOKUMERET][SODOKUMERET][SODOKUMERET][SODOKUMERET];
+    bool _felulirhatoe[SODOKUMERET][SODOKUMERET][SODOKUMERET][SODOKUMERET];
+    void _GenerateIntMatrix();
+    void _GenerateBoolMatrix();
+    void _GenerateMap();
 
     public:
     JatekMester();
