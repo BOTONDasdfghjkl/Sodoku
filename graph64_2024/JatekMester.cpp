@@ -11,6 +11,7 @@
 
 #include "iostream"
 #include <vector>
+#include <ctime>
 using namespace genv;
 
 const int XXkepernyomeret=500;
@@ -22,6 +23,7 @@ const int NAGYNEGYZET=KICSINEGYZET*KICSINEGYZET;
 
 JatekMester::JatekMester(){
     gout.open(XXkepernyomeret,YYkepernyomeret);
+        std::srand(std::time(0));
 
     //Menu elkészítése
     _menjenajatek=true;
@@ -140,12 +142,14 @@ void JatekMester::_GenerateBoolMatrix(){
         }
     }
     int mennyiures=45+rand()%10;
-    int rand1,rand2,rand3,rand4;
+    int randomszam,rand1,rand2,rand3,rand4;
     do{
             rand1=rand()%SODOKUMERET;
             rand2=rand()%SODOKUMERET;
             rand3=rand()%SODOKUMERET;
             rand4=rand()%SODOKUMERET;
+
+            std::cout<<rand1;
             if(_felulirhatoe[rand1][rand2][rand3][rand4]==false){
                 _felulirhatoe[rand1][rand2][rand3][rand4]=true;
                 mennyiures--;
@@ -154,6 +158,7 @@ void JatekMester::_GenerateBoolMatrix(){
 
 };
 void JatekMester::_GenerateMap(){
+
     _GenerateIntMatrix();
     _GenerateBoolMatrix();
     int ind=0;
@@ -161,7 +166,11 @@ void JatekMester::_GenerateMap(){
         for(int X=0;X<SODOKUMERET;X++){
             for(int y=0;y<SODOKUMERET;y++){
                 for(int x=0;x<SODOKUMERET;x++){
-                        _SodokuPalya[ind]->ErtekValt(std::to_string(_intmatrix[Y][X][y][x]));
+                        if(_felulirhatoe[Y][X][y][x]){
+                            _intmatrix[Y][X][y][x]=0;
+                        }else{
+                        _SodokuPalya[ind]->ErtekValt(std::to_string(_felulirhatoe[Y][X][y][x]));
+                        }
                         ind++;
                 }
             }
