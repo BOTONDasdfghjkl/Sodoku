@@ -23,7 +23,10 @@ private:
     SzovegesLenyomhatoWidget** _SodokuPalya;
     SzovegesLenyomhatoWidget** _ErtekKivalasztok;
     SzovegesLenyomhatoWidget* _HibakszamaFelirat;
+    SzovegesLenyomhatoWidget* _RetryGomb;
+    SzovegesLenyomhatoWidget* _Uzenet;
     int _elkovetetthibak;
+    int _kitoltottmezok;
     std::string _HibakSzamaszovege();
 
 
@@ -36,8 +39,8 @@ private:
     bool _isValidROWCOLOUM(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek);
     bool _isValidKicsiNegyzet(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek);
     bool _isValidStep(const int& dY,const int& dX,const int& dy,const int& dx,const int& ertek);
-    void _isLost();
-    void _isWin();
+    bool _isLost();
+    bool _isWin();
     void _Step(int Y,int X,int y, int x, int ind);
     void _ChangeErtek(int i);
 
