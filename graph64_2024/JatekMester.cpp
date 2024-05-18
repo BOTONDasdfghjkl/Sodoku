@@ -87,7 +87,6 @@ JatekMester::JatekMester(){
 void JatekMester::Start(){
     _MenuSzerkezet->EventLoop();
     while(_menjenajatek){
-        _elkovetetthibak=0;
         _GenerateMap();
         _SodokuJatek->EventLoop();
         _menjenajatek=false;
@@ -99,91 +98,14 @@ std::string JatekMester::_HibakSzamaszovege(){
     return std::to_string(_elkovetetthibak)+"/"+std::to_string(MAXHIBAK);
 }
 
+
+
 void JatekMester::_GenerateMap(){
     _elkovetetthibak=0;
     _HibakszamaFelirat->ErtekValt(_HibakSzamaszovege());
     _Uzenet->ErtekValt("");
-
-    for(int Y=0;Y<SODOKUMERET;Y++){
-        for(int X=0;X<SODOKUMERET;X++){
-            for(int y=0;y<SODOKUMERET;y++){
-                for(int x=0;x<SODOKUMERET;x++){
-                        _intmatrix[Y][X][y][x]=0;
-                }
-            }
-        }
-    }
-    for(int Y=0;Y<SODOKUMERET;Y++){
-        for(int X=0;X<SODOKUMERET;X++){
-            for(int y=0;y<SODOKUMERET;y++){
-                for(int x=0;x<SODOKUMERET;x++){
-                        _felulirhatoe[Y][X][y][x]=true;
-                }
-            }
-        }
-    }
-    _felulirhatoe[0][0][0][0]=false;
-    _intmatrix[0][0][0][0]=7;
-    _felulirhatoe[0][0][2][1]=false;
-    _intmatrix[0][0][2][1]=5;
-
-    _felulirhatoe[0][1][1][0]=false;
-    _intmatrix[0][1][1][0]=6;
-    _felulirhatoe[0][1][2][1]=false;
-    _intmatrix[0][1][2][1]=9;
-    _felulirhatoe[0][1][2][2]=false;
-    _intmatrix[0][1][2][2]=1;
-
-    _felulirhatoe[0][2][0][1]=false;
-    _intmatrix[0][2][0][1]=3;
-    _felulirhatoe[0][2][0][2]=false;
-    _intmatrix[0][2][0][2]=5;
-    _felulirhatoe[0][2][1][0]=false;
-    _intmatrix[0][2][1][0]=1;
-    _felulirhatoe[0][2][1][1]=false;
-    _intmatrix[0][2][1][1]=8;
-
-    _felulirhatoe[1][0][0][0]=false;
-    _intmatrix[1][0][0][0]=3;
-    _felulirhatoe[1][0][1][1]=false;
-    _intmatrix[1][0][1][1]=8;
-    _felulirhatoe[1][0][1][2]=false;
-    _intmatrix[1][0][1][2]=9;
-
-    _felulirhatoe[1][1][0][2]=false;
-    _intmatrix[1][1][0][2]=5;
-    _felulirhatoe[1][1][2][0]=false;
-    _intmatrix[1][1][2][0]=2;
-
-    _felulirhatoe[1][2][1][0]=false;
-    _intmatrix[1][2][1][0]=5;
-    _felulirhatoe[1][2][1][1]=false;
-    _intmatrix[1][2][1][1]=6;
-    _felulirhatoe[1][2][2][2]=false;
-    _intmatrix[1][2][2][2]=8;
-
-    _felulirhatoe[2][0][1][1]=false;
-    _intmatrix[2][0][1][1]=9;
-    _felulirhatoe[2][0][1][2]=false;
-    _intmatrix[2][0][1][2]=7;
-    _felulirhatoe[2][0][2][0]=false;
-    _intmatrix[2][0][2][0]=5;
-    _felulirhatoe[2][0][2][1]=false;
-    _intmatrix[2][0][2][1]=2;
-
-    _felulirhatoe[2][1][0][0]=false;
-    _intmatrix[2][1][0][0]=1;
-    _felulirhatoe[2][1][0][1]=false;
-    _intmatrix[2][1][0][1]=4;
-    _felulirhatoe[2][1][1][2]=false;
-    _intmatrix[2][1][1][2]=3;
-
-    _felulirhatoe[2][2][0][1]=false;
-    _intmatrix[2][2][0][1]=5;
-    _felulirhatoe[2][2][2][2]=false;
-    _intmatrix[2][2][2][2]=6;
-
-    _kitoltottmezok=26;
+    _GenerateIntMatrix();
+    _GenerateBoolMatrix();
 
     int ind=0;
     for(int Y=0;Y<SODOKUMERET;Y++){
@@ -282,6 +204,129 @@ void JatekMester::_ChangeErtek(int i){
 
 
 
+void RandomShuffleVector(std::vector<int>& v, int hanyszor){
+    int cserelo,rand1,rand2;
+    for(int i=0;i<hanyszor;i++){
+        rand1=rand()%v.size();
+        do{
+            rand2=rand()%v.size();
+        }while(rand1==rand2);
+        cserelo=v[rand1];
+        v[rand1]=v[rand2];
+        v[rand2]=cserelo;
+    }
+}
+
+void ShiftRightVector(std::vector<int>& v,int hanyszor){
+    for(int j=0;j<hanyszor;j++){
+        int cserelo=v[v.size()-1];
+        for(int i=v.size()-1;i>0;i--){
+            v[i]=v[i-1];
+        }
+        v[0]=cserelo;
+    }
+}
+
+
+
+void JatekMester::_GenerateIntMatrix(){
+    std::vector<int> lehetsegesszamok={1,2,3,4,5,6,7,8,9};
+    RandomShuffleVector(lehetsegesszamok,15+rand()%10);
+    int szamok[NAGYNEGYZET];
+    for(int i=0;i<KICSINEGYZET;i++){
+        if(i!=0&&i%SODOKUMERET==0){
+            ShiftRightVector(lehetsegesszamok,1);
+        }
+        for(int j=0;j<KICSINEGYZET;j++){
+            szamok[i*KICSINEGYZET+j]=lehetsegesszamok[j];
+        }
+        ShiftRightVector(lehetsegesszamok,3);
+
+    }
+
+    for(int Y=0;Y<SODOKUMERET;Y++){
+        for(int X=0;X<SODOKUMERET;X++){
+            for(int y=0;y<SODOKUMERET;y++){
+                for(int x=0;x<SODOKUMERET;x++){
+                        _intmatrix[Y][X][y][x]=szamok[Y*SODOKUMERET*SODOKUMERET*SODOKUMERET+y*SODOKUMERET*SODOKUMERET+X*SODOKUMERET+x];
+                }
+            }
+        }
+    }
+
+};
+void JatekMester::_GenerateBoolMatrix(){
+    for(int Y=0;Y<SODOKUMERET;Y++){
+        for(int X=0;X<SODOKUMERET;X++){
+            for(int y=0;y<SODOKUMERET;y++){
+                for(int x=0;x<SODOKUMERET;x++){
+                        _felulirhatoe[Y][X][y][x]=false;
+                }
+            }
+        }
+    }
+    int mennyiures=45+rand()%10;
+    _kitoltottmezok=NAGYNEGYZET-mennyiures;
+    std::cout<<_kitoltottmezok;
+    int rand1,rand2,rand3,rand4;
+    do{
+            rand1=rand()%SODOKUMERET;
+            rand2=rand()%SODOKUMERET;
+            rand3=rand()%SODOKUMERET;
+            rand4=rand()%SODOKUMERET;
+            if(_felulirhatoe[rand1][rand2][rand3][rand4]==false){
+                _felulirhatoe[rand1][rand2][rand3][rand4]=true;
+                mennyiures--;
+            }
+    } while(mennyiures>0);
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -331,8 +376,7 @@ void JatekMester::_GenerateIntMatrixKicsiNegyzet(int Y, int X){
 }
 
 
-
-void JatekMester::_GenerateIntMatrix(){
+void JatekMester::GenerateSpecificMAP(){
     for(int Y=0;Y<SODOKUMERET;Y++){
         for(int X=0;X<SODOKUMERET;X++){
             for(int y=0;y<SODOKUMERET;y++){
@@ -342,62 +386,77 @@ void JatekMester::_GenerateIntMatrix(){
             }
         }
     }
-
-
-
-    for(int Y=0;Y<SODOKUMERET;Y++){
-        for(int X=0;X<SODOKUMERET;X++){
-            _GenerateIntMatrixKicsiNegyzet(Y,X);
-        }
-    }
-
-};
-void JatekMester::_GenerateBoolMatrix(){
     for(int Y=0;Y<SODOKUMERET;Y++){
         for(int X=0;X<SODOKUMERET;X++){
             for(int y=0;y<SODOKUMERET;y++){
                 for(int x=0;x<SODOKUMERET;x++){
-                        _felulirhatoe[Y][X][y][x]=false;
+                        _felulirhatoe[Y][X][y][x]=true;
                 }
             }
         }
     }
-    int mennyiures=45+rand()%10;
-    int rand1,rand2,rand3,rand4;
-    do{
-            rand1=rand()%SODOKUMERET;
-            rand2=rand()%SODOKUMERET;
-            rand3=rand()%SODOKUMERET;
-            rand4=rand()%SODOKUMERET;
-            if(_felulirhatoe[rand1][rand2][rand3][rand4]==false){
-                _felulirhatoe[rand1][rand2][rand3][rand4]=true;
-                mennyiures--;
-            }
-    } while(mennyiures>0);
+    _felulirhatoe[0][0][0][0]=false;
+    _intmatrix[0][0][0][0]=7;
+    _felulirhatoe[0][0][2][1]=false;
+    _intmatrix[0][0][2][1]=5;
 
-};
-void JatekMester::_GenerateMap(){
+    _felulirhatoe[0][1][1][0]=false;
+    _intmatrix[0][1][1][0]=6;
+    _felulirhatoe[0][1][2][1]=false;
+    _intmatrix[0][1][2][1]=9;
+    _felulirhatoe[0][1][2][2]=false;
+    _intmatrix[0][1][2][2]=1;
 
-    _GenerateIntMatrix();
-    _GenerateBoolMatrix();
-    int ind=0;
-    for(int Y=0;Y<SODOKUMERET;Y++){
-        for(int X=0;X<SODOKUMERET;X++){
-            for(int y=0;y<SODOKUMERET;y++){
-                for(int x=0;x<SODOKUMERET;x++){
+    _felulirhatoe[0][2][0][1]=false;
+    _intmatrix[0][2][0][1]=3;
+    _felulirhatoe[0][2][0][2]=false;
+    _intmatrix[0][2][0][2]=5;
+    _felulirhatoe[0][2][1][0]=false;
+    _intmatrix[0][2][1][0]=1;
+    _felulirhatoe[0][2][1][1]=false;
+    _intmatrix[0][2][1][1]=8;
 
-                        if(_felulirhatoe[Y][X][y][x]){
-                            _SodokuPalya[ind]->ErtekValt("");
-                            _intmatrix[Y][X][y][x]=0;
-                        }else{
+    _felulirhatoe[1][0][0][0]=false;
+    _intmatrix[1][0][0][0]=3;
+    _felulirhatoe[1][0][1][1]=false;
+    _intmatrix[1][0][1][1]=8;
+    _felulirhatoe[1][0][1][2]=false;
+    _intmatrix[1][0][1][2]=9;
 
-                        _SodokuPalya[ind]->ErtekValt(std::to_string(_intmatrix[Y][X][y][x]));
-                        }
-                        ind++;
-                }
-            }
-        }
-    }
+    _felulirhatoe[1][1][0][2]=false;
+    _intmatrix[1][1][0][2]=5;
+    _felulirhatoe[1][1][2][0]=false;
+    _intmatrix[1][1][2][0]=2;
 
-};
+    _felulirhatoe[1][2][1][0]=false;
+    _intmatrix[1][2][1][0]=5;
+    _felulirhatoe[1][2][1][1]=false;
+    _intmatrix[1][2][1][1]=6;
+    _felulirhatoe[1][2][2][2]=false;
+    _intmatrix[1][2][2][2]=8;
+
+    _felulirhatoe[2][0][1][1]=false;
+    _intmatrix[2][0][1][1]=9;
+    _felulirhatoe[2][0][1][2]=false;
+    _intmatrix[2][0][1][2]=7;
+    _felulirhatoe[2][0][2][0]=false;
+    _intmatrix[2][0][2][0]=5;
+    _felulirhatoe[2][0][2][1]=false;
+    _intmatrix[2][0][2][1]=2;
+
+    _felulirhatoe[2][1][0][0]=false;
+    _intmatrix[2][1][0][0]=1;
+    _felulirhatoe[2][1][0][1]=false;
+    _intmatrix[2][1][0][1]=4;
+    _felulirhatoe[2][1][1][2]=false;
+    _intmatrix[2][1][1][2]=3;
+
+    _felulirhatoe[2][2][0][1]=false;
+    _intmatrix[2][2][0][1]=5;
+    _felulirhatoe[2][2][2][2]=false;
+    _intmatrix[2][2][2][2]=6;
+
+    _kitoltottmezok=26;
+
+}
 */

@@ -44,13 +44,17 @@ private:
     void _Step(int Y,int X,int y, int x, int ind);
     void _ChangeErtek(int i);
 
-    /*
+
+    void GenerateSpecificMAP();
+
+
+    //Szar cuccok
     void _GenerateIntMatrix();
     void _GenerateIntMatrixKicsiNegyzet(int Y, int X);
     void _GenerationErrorSolver(const int& Y,const int& X,const int&y,const int &x);
     void ElemekTorlese(std::vector<int>& v,const int& Y,const int& X,const int&y,const int &x);
     void _GenerateBoolMatrix();
-    */
+
 
 
     public:
