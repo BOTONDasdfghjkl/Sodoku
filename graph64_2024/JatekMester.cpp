@@ -267,7 +267,6 @@ void JatekMester::_GenerateBoolMatrix(){
     }
     int mennyiures=45+rand()%10;
     _kitoltottmezok=NAGYNEGYZET-mennyiures;
-    std::cout<<_kitoltottmezok;
     int rand1,rand2,rand3,rand4;
     do{
             rand1=rand()%SODOKUMERET;
